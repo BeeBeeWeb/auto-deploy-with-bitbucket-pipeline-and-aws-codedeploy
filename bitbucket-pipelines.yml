@@ -1,0 +1,33 @@
+# This is a sample build configuration for JavaScript.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: node:8.8.1
+
+pipelines:
+  branches:
+    ng4-staging:
+    - step:
+        caches:
+          - node
+        script: # Modify the commands below to build your repository.
+          - node -v
+          - npm -v
+          - npm install
+          - npm rebuild
+          - npm install gulp -g
+          - npm install typings -g
+          - typings install
+          - gulp build.prod
+        artifacts:
+          - dist/**
+    - step:
+            script:
+              - echo $APPLICATION_NAME
+              - apt-get update # required to install zip
+              - apt-get install -y zip # required for packaging up the application
+              - apt-get install python-pip -y
+              - pip install boto3==1.3.0 # required for codedeploy_deploy.py
+              - zip -r /tmp/artifact.zip dist/** appspec.yml package.json scripts # package up the application for deployment
+              - python codedeploy_deploy.py # run the deployment script

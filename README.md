@@ -1,6 +1,6 @@
 # How to auto deploy with Bitbucket Pipelines and AWS CodeDeploy?
 
-### Step by step guide on how to auto deploy your app: 
+### **Step by step guide on how to auto deploy your app:** 
 **Prerequisites:** 
 - BitBucket Repository
 - AWS Account

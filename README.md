@@ -79,6 +79,7 @@ Login to your AWS account > Services > S3 > Create bucket > Bucket name: staging
 
 ### STEP 9. CodeDeploy settings for Repository
 Login to your repo > Settings > CodeDeploy Settings > Configure add-on > Follow the on screen instructions
+
 **Step A**
 Login to your AWS account > Services > IAM > Policy > Create Policy > Create Your Own Policy > (This policy is created for bitbucket code deploy add on, use this to create role for bitbucket codeDeploy addon)
 Policy Name: BitBucketCodeDeployAddOnPolicy
@@ -86,6 +87,7 @@ Policy Document: paste following into input box
 >{“Version”: “2012–10–17”,”Statement”: [{“Effect”: “Allow”,”Action”: [“s3:ListAllMyBuckets”,”s3:PutObject”],”Resource”: “arn:aws:s3:::*”},{“Effect”: “Allow”,”Action”: [“codedeploy:*”],”Resource”: “*”}]}
 
 Create Policy
+
 **Step B**
 Login to your AWS account > Services > IAM > Roles > create role > another AWS account > account ID: copy paste the AWS Account ID given on the bitbucket codeDeploy on screen instruction > check require external ID checkbox then: copy paste the External ID given on the bitbucket codeDeploy on screen instruction > next: Permissions > Attach permissions policies > search for policy that you created in step A > next: review
 **Roll name**: "BitbucketCodeDeployAddon" > Create role
@@ -102,12 +104,14 @@ Login to your BitBucket account Repo Settings > Pipelines > settings > Turn on E
 ### STEP 11. Create bitbucket-pipelines.yml
 Copy bitbucket-pipelines.yml file.(make changes to this file as per your project requirement)
 Add this file to root of your project.
+
 **Docs**: https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html?_ga=2.162970750.315484667.1509451697-1615374000.1508921669#Configurebitbucket-pipelines.yml-ci_imageimage(optional)
 
 
 ### STEP 12. Create codedeploy_deploy.py
 Copy codedeploy_deploy.py file.
 Add this file to root of you your project.
+
 **Docs & Source**: https://bitbucket.org/awslabs/aws-codedeploy-bitbucket-pipelines-python
 
 
@@ -115,6 +119,7 @@ Add this file to root of you your project.
 Go to Source of this repo: https://bitbucket.org/bhushanTPL/bitbucket-pipeline-and-aws-codedeploy
 and copy ***appspec.yml*** file. (make changes to this file as per your project requirement)
 Add it to root of your project.
+
 **Docs**: http://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html
 
 
@@ -127,12 +132,18 @@ Create scripts folder at root of your project 
 Login to your BitBucket account > your Repo Settings > Environment Variables
 Add the following environment variables
 >AWS_SECRET_ACCESS_KEY: Secret key for a user with the required permissions.
-AWS_ACCESS_KEY_ID: Access key for a user with the required permissions.
-AWS_DEFAULT_REGION: Region where the target AWS CodeDeploy application is.
-APPLICATION_NAME: Name of AWS CodeDeploy application.
-DEPLOYMENT_CONFIG: AWS CodeDeploy Deployment Configuration (CodeDeployDefault.OneAtATime|CodeDeployDefault.AllAtOnce|CodeDeployDefault.HalfAtATime|Custom).
-DEPLOYMENT_GROUP_NAME: Name of the Deployment group in the application.
-S3_BUCKET: Name of the S3 Bucket where source code to be deployed is stored.
+
+> AWS_ACCESS_KEY_ID: Access key for a user with the required permissions.
+
+> AWS_DEFAULT_REGION: Region where the target AWS CodeDeploy application is.
+
+> APPLICATION_NAME: Name of AWS CodeDeploy application.
+
+> DEPLOYMENT_CONFIG: AWS CodeDeploy Deployment Configuration (CodeDeployDefault.OneAtATime|CodeDeployDefault.AllAtOnce|CodeDeployDefault.HalfAtATime|Custom).
+
+> DEPLOYMENT_GROUP_NAME: Name of the Deployment group in the application.
+
+> S3_BUCKET: Name of the S3 Bucket where source code to be deployed is stored.
 
 **Docs & Ref**: https://bitbucket.org/awslabs/aws-codedeploy-bitbucket-pipelines-python
 

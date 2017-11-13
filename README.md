@@ -49,11 +49,12 @@ Services > EC2 > Launch Instance > Amazon Linux AMI (or choose as per your need)
 ### STEP 5. Install CodeDeploy Agent on EC2 instance
 Open Putty on your local machine > Enter the Public IP that you got in Step 4 > Port 22 > In Connection > SSH > Auth > Private key file for authentication> browse> link the key pair file for your instance in step 4 > open > login as: enter your username
 > Now install CodeDeploy agent as per your instance type
-Linux Server: http://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html
 
-Ubuntu Server: http://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
+> Linux Server: http://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html
 
-Windows Server: http://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-windows.html
+> Ubuntu Server: http://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
+
+> Windows Server: http://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-windows.html
 > Verify that agent is running.
 
 

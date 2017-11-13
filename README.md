@@ -72,7 +72,7 @@ Services > EC2 > Launch Instance > Amazon Linux AMI (or choose as per your need)
 
 Next: Add Storage > Next: Add Tags > Add Tag > (Important step!! note down name & key you assign) Input Key: Name, Value: staging-auto-deploy (or anything you prefer) > 
 
-![Alt text](readme_images/11.png? "Optional Title")
+![Alt text](readme_images/11.jpeg? "Optional Title")
 
 Next: Configure Security Group > select existing security group or create new > Review and Launch > Launch > Select existing key pair or create new > Launch Instances > View Instances > Note down IPv4 Public IP
 
@@ -207,5 +207,5 @@ You have now configured all the required steps. Now when you commit and push you
 
 You can check progress of your pipeline by clicking on Pipelines in your repo.
 
-![Alt text](readme_images20.png? "Optional Title")
+![Alt text](readme_images/20.png? "Optional Title")
 

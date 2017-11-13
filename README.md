@@ -55,6 +55,7 @@ Open Putty on your local machine > Enter the Public IP that you got in Step 4 > 
 > Ubuntu Server: http://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html
 
 > Windows Server: http://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-windows.html
+
 > Verify that agent is running.
 
 

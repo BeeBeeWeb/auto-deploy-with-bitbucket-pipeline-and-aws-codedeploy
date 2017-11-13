@@ -240,3 +240,6 @@ You can check progress of your pipeline by clicking on Pipelines in your repo.
 ![Alt text](readme_images/20.png? "Optional Title")
 ---
 
+You can view deployment related logs. For more info visit : http://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-view-logs.html
+
+You can monitor deployments from AWS, Login to your AWS account, Services > CodeDeploy > Deployments.

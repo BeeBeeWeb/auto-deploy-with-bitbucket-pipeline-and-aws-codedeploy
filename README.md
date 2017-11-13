@@ -11,6 +11,9 @@ Login to your AWS account. Visit https://console.aws.amazon.com/iam/
 
 Users > Add User > enter username > check box both Access type > choose “Custom Password” radio > Uncheck “Require password reset” > Click Next: Permissions> Attach existing policies directly >
 search for “s3” and select AmazonS3FullAccess
+
+![Alt text](readme-images/1.jpg? "Optional Title")
+
 Attach Existing Policies- search for “codedeploy” and select AmazonEC2RoleforAWSCodeDeploy, AWSCodeDeployDeployerAccess, AWSCodeDeployFullAccess, AWSCodeDeployRole
 Attach Existing Policies> Next: Review > Create user-**IMPORTANT NOTE:** 
 **1. Download CSV**

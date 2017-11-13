@@ -15,10 +15,15 @@ search for “s3” and select AmazonS3FullAccess
 ![Alt text](readme_images/1.png? "Optional Title")
 
 Attach Existing Policies- search for “codedeploy” and select AmazonEC2RoleforAWSCodeDeploy, AWSCodeDeployDeployerAccess, AWSCodeDeployFullAccess, AWSCodeDeployRole
-Attach Existing Policies> Next: Review > Create user-**IMPORTANT NOTE:** 
+
+![Alt text](readme_images/2.png? "Optional Title")
+
+Next: Review > Create user-**IMPORTANT NOTE:** 
 **1. Download CSV**
 **2. Note Down Access Key ID**
 **3. Note Down Secret access key**
+
+![Alt text](readme_images/5.png? "Optional Title")
 
 
 ### STEP 2. Create Role for CodeDeploy Application
@@ -26,7 +31,15 @@ Its is service role for Code Deploy. This service role you assign to the code de
 
 Login to your AWS account. Visit https://console.aws.amazon.com/iam/
 
-Roles > Create Role > click AWS service > Below Select CodeDeploy > Next: permissions > Next Review > enter Role name (e.g CodeDeployServiceRole) > enter description (not compulsory) > Create role.
+Roles > Create Role > click AWS service > 
+
+![Alt text](readme_images/6.png? "Optional Title")
+
+Below Select CodeDeploy > 
+
+![Alt text](readme_images/7.png? "Optional Title")
+
+Next: permissions > Next Review > enter Role name (e.g CodeDeployServiceRole) > enter description (not compulsory) > Create role.
 
 
 ### STEP 3. Create Role for EC2 instance
@@ -36,17 +49,32 @@ Login to your AWS account. Visit https://console.aws.amazon.com/iam/
 
 **Step A. Create Policy for this Role.**
 Policies > Create Policy > Select Create Your Own Policy > Policy Name: “CodeDeploy-EC2-Permissions” > Description: “policy for role which is assigned to EC2 instance” > Policy Document: Paste the following in the input box.
+
+![Alt text](readme_images/8.png? "Optional Title")
+
 > {“Version”: “2012–10–17”,“Statement”: [{“Action”: [“s3:Get*”,“s3:List*”],“Effect”: “Allow”,“Resource”: “*”}]}
 
 Validate Policy > Create Policy.
 
 **Step B: Create Role**
-Roles > Create Role > AWS service > EC2 > Select your use case > Click EC2 > Next: Permissions > search for “ec2” and select the “CodeDeploy-EC2-Permissions” which you created in Step A > Next: Review > Name: “CodeDeploy-EC2-Instance-Profile” > Role Description: “CodeDeploy-EC2-Instance-Profile” > Create Role
+Roles > Create Role > AWS service > EC2 > Select your use case > Click EC2 > Next: Permissions > search for “ec2” and select the “CodeDeploy-EC2-Permissions” which you created in Step A > 
+
+![Alt text](readme_images/9.png? "Optional Title")
+
+Next: Review > Name: “CodeDeploy-EC2-Instance-Profile” > Role Description: “CodeDeploy-EC2-Instance-Profile” > Create Role
 
 
 ### STEP 4. Create EC2 Instance.
 Login to your AWS Account.
-Services > EC2 > Launch Instance > Amazon Linux AMI (or choose as per your need) > Choose an instance type > Next: Configure Instance Details > IAM role > from drop down select the role that you created in Step 3 Step B (CodeDeploy-EC2-Instance-Profile) > Next: Add Storage > Next: Add Tags > Add Tag > (Important step!! note down name & key you assign) Input Key: Name, Value: staging-auto-deploy (or anything you prefer) > Next: Configure Security Group > select existing security group or create new > Review and Launch > Launch > Select existing key pair or create new > Launch Instances > View Instances > Note down IPv4 Public IP
+Services > EC2 > Launch Instance > Amazon Linux AMI (or choose as per your need) > Choose an instance type > Next: Configure Instance Details > IAM role > from drop down select the role that you created in Step 3 Step B (CodeDeploy-EC2-Instance-Profile) > 
+
+![Alt text](readme_images/10.png? "Optional Title")
+
+Next: Add Storage > Next: Add Tags > Add Tag > (Important step!! note down name & key you assign) Input Key: Name, Value: staging-auto-deploy (or anything you prefer) > 
+
+![Alt text](readme_images/11.png? "Optional Title")
+
+Next: Configure Security Group > select existing security group or create new > Review and Launch > Launch > Select existing key pair or create new > Launch Instances > View Instances > Note down IPv4 Public IP
 
 
 ### STEP 5. Install CodeDeploy Agent on EC2 instance
@@ -61,10 +89,14 @@ Open Putty on your local machine > Enter the Public IP that you got in Step 4 > 
 
 > Verify that agent is running.
 
+![Alt text](readme_images/12.png? "Optional Title")
+
 
 ### STEP 6. Add CodeDeploy Addon on BitBucket
 Login to your BitBucket Account
 Integrations > Search AWS CodeDeploy > Add AWS CodeDeploy
+
+![Alt text](readme_images/13.png? "Optional Title")
 
 
 ### STEP 7. Create CodeDeploy Application on AWS
@@ -73,7 +105,15 @@ Services > search CodeDeploy > select CodeDeploy > If this is your first time se
 Application Name: staging-deployment (Important: note it down)
 Deployment group name: staging-deployment (Important: note it down)
 Select “In-place deployment”
-Environment configuration > Amazon EC2 isntance > Key: Name, Value: staging-auto-deploy (these are the key, value which you created when you created instance in Step 4) > Deployment Configuration > CodeDeployDefault.OneAtTime > Service Role ARN: select the role that you created in step 2 (CodeDeployServiceRole) > Create Application
+Environment configuration > Amazon EC2 isntance > Key: Name, Value: staging-auto-deploy (these are the key, value which you created when you created instance in Step 4) > 
+
+![Alt text](readme_images/14.png? "Optional Title")
+
+Deployment Configuration > CodeDeployDefault.OneAtTime > Service Role ARN: select the role that you created in step 2 (CodeDeployServiceRole) > 
+
+![Alt text](readme_images/15.png? "Optional Title")
+
+Create Application
 
 
 ### STEP 8. Create S3 volume
@@ -92,7 +132,17 @@ Policy Document: paste following into input box
 Create Policy
 
 **Step B**
-Login to your AWS account > Services > IAM > Roles > create role > another AWS account > account ID: copy paste the AWS Account ID given on the bitbucket codeDeploy on screen instruction > check require external ID checkbox then: copy paste the External ID given on the bitbucket codeDeploy on screen instruction > next: Permissions > Attach permissions policies > search for policy that you created in step A > next: review
+Login to your AWS account > Services > IAM > Roles > create role > another AWS account > 
+
+![Alt text](readme_images/16.png? "Optional Title")
+
+account ID: copy paste the AWS Account ID given on the bitbucket codeDeploy on screen instruction > check require external ID checkbox then: copy paste the External ID given on the bitbucket codeDeploy on screen instruction > 
+
+![Alt text](readme_images/17.png? "Optional Title")
+
+![Alt text](readme_images/18.png? "Optional Title")
+
+next: Permissions > Attach permissions policies > search for policy that you created in step A > next: review
 **Roll name**: "BitbucketCodeDeployAddon" > Create role
 click on the role you just created and copy Role ARN and paste it into “Your Role ARN” on bitbucket code deploy settings page > click save & continue
 On next page Application: select CodeDeploy Application that you created in step 7 > S3 Bucket: select S3 bucket that you created in step 8 > save
@@ -152,4 +202,10 @@ Add the following environment variables
 
 ---
 You have now configured all the required steps. Now when you commit and push your changes to your branch the auto deployment process starts. Note that in the following bitbucket-pipeline.yml configuration deployment process will start whenever you push your changes to “staging” branch.
+
+![Alt text](readme_images/19.png? "Optional Title")
+
+You can check progress of your pipeline by clicking on Pipelines in your repo.
+
+![Alt text](readme_images20.png? "Optional Title")
 

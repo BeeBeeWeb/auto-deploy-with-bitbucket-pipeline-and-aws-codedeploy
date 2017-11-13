@@ -6,7 +6,7 @@
 - AWS Account
 - Putty
 
-### STEP 1. Create New IAM User
+### **STEP 1. Create New IAM User**
 Login to your AWS account. Visit https://console.aws.amazon.com/iam/
 
 Users > Add User > enter username > check box both Access type > choose “Custom Password” radio > Uncheck “Require password reset” > Click Next: Permissions> Attach existing policies directly >
